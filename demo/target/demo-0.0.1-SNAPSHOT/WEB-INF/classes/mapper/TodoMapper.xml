@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.TodoMapper">
+    <select id="findAll" resultType="Todo">
+        select * from todo
+        order by id DESC;
+    </select>
+
+    <insert id="inserTodo" parameterType="Todo">
+        Insert into todo(todo,createdDate)
+        values(#{todo},timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)
+    </insert>
+
+</mapper>

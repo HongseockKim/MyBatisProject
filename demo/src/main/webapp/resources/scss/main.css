@@ -1,0 +1,125 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.wrapper #right-menu {
+  position: fixed;
+  top: 0;
+  right: -500px;
+  width: 500px;
+  height: 100%;
+  background: #f8f8f8;
+  box-shadow: 0 0 10px;
+  transition: all 0.3s;
+}
+.wrapper #right-menu .wrap {
+  padding: 20px;
+  position: relative;
+}
+.wrapper #right-menu .wrap #openPopup {
+  position: absolute;
+  padding: 10px 20px;
+  font-size: 20px;
+  top: 10px;
+  left: -100px;
+}
+.wrapper #right-menu.open {
+  right: 0;
+}
+.wrapper #right-menu.open #openPopup {
+  left: 0;
+}
+.wrapper .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 120px;
+  background: rgba(34, 110, 224, 0.6);
+  width: 100%;
+  box-shadow: 0 0 5px #333333;
+  overflow: hidden;
+}
+.wrapper .header .row {
+  height: 100%;
+  line-height: 120px;
+  padding: 0 20px;
+}
+.wrapper .header .row #todoModal {
+  padding: 5px 20px;
+  font-size: 19px;
+}
+.wrapper .header .logo {
+  font-size: 34px;
+  color: #fff;
+  line-height: 120px;
+}
+.wrapper .main-inner {
+  background: #f8f8f8;
+  height: 100%;
+  padding-top: 130px;
+}
+.wrapper .main-inner .todo_list {
+  width: 500px;
+}
+.wrapper .main-inner .todo_list #todo_num {
+  text-align: center;
+}
+.wrapper .main-inner .todo_list .detail_button {
+  display: block;
+  width: 80%;
+  text-align: left;
+}
+.wrapper .main-inner .todo_list .detail_button:hover {
+  text-decoration-line: underline;
+}
+.wrapper .main-inner .todo_list .todo_item {
+  position: relative;
+  overflow: hidden;
+}
+.wrapper .main-inner .todo_list .todo_item .delete_todo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -100%;
+  z-index: 10;
+  transition: all 0.3s;
+  padding: 10px 15px;
+}
+.wrapper .main-inner .todo_list .todo_item:hover .delete_todo {
+  right: 0;
+}
+
+#myModal .modal-body {
+  min-height: 400px;
+  overflow: hidden;
+}
+#myModal .modal-body .todo-label {
+  font-size: 24px;
+}
+#myModal .modal-body #todo_text {
+  min-height: 250px;
+  width: 470px;
+  display: block;
+}
+#myModal .modal-footer {
+  text-align: center;
+}
+#myModal .modal-footer .todo-registration {
+  background: rgba(34, 110, 224, 0.6);
+  color: #fff;
+  padding: 10px 30px;
+}
+#myModal.todo_text {
+  width: 100%;
+  min-height: 250px;
+}
+#myModal .modal-header {
+  position: relative;
+}
+#myModal .modal-header .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/*# sourceMappingURL=main.css.map */

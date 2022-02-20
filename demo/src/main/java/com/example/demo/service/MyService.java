@@ -23,4 +23,10 @@ public class MyService {
         todoMapper.inserTodo(todo);
         return true;
     }
+
+    public Boolean deleteItem(long id) {
+        todoMapper.deleteItem(id);
+
+        return  true;
+    }
 }

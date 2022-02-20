@@ -3,11 +3,17 @@
 
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
-        select * from todo order by id DESC;
+        select * from todo
+        order by id DESC;
     </select>
 
     <insert id="inserTodo" parameterType="Todo">
-        Insert into todo(todo,createDate) values(#{todo}, now())
+        Insert into todo(todo)
+        values(#{todo})
     </insert>
+
+    <delete id="deleteItem" parameterType="Todo">
+    delete from todo where id = ${id}
+    </delete>
 
 </mapper>
