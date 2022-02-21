@@ -19,6 +19,11 @@ public class MyService {
         return todo;
     }
 
+    public List<Todo> findTodo(){
+        List<Todo> todoCheck = todoMapper.findTodo();
+        return todoCheck;
+    }
+
     public Boolean insertTodo(Todo todo) {
         todoMapper.inserTodo(todo);
         return true;
@@ -28,5 +33,14 @@ public class MyService {
         todoMapper.deleteItem(id);
 
         return  true;
+    }
+
+    public Todo getDetailTodo(long id) {
+        Todo todo = todoMapper.getDetailTodo(id);
+        return  todo;
+    }
+    public Boolean updateTodoSet(long id) {
+        todoMapper.updateTodoSet(id);
+        return true;
     }
 }

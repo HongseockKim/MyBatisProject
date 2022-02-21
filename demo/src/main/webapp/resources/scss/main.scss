@@ -21,8 +21,8 @@ body{font-family: 'Noto Sans KR', sans-serif;}
 }
 
   .header{
-    position: fixed;top:0;left: 0;height: 120px;background: rgba(34, 110, 224, 0.6);width:100%;
-    box-shadow: 0 0 5px #333333;overflow:hidden;
+    position: fixed;top:0;left: 0;height: 120px;background: rgba(34, 110, 224, 1);width:100%;
+    box-shadow: 0 0 5px #333333;overflow:hidden;z-index: 999;
   ;
     & .row{
       height:100%;line-height:120px;padding:0 20px;
@@ -35,11 +35,31 @@ body{font-family: 'Noto Sans KR', sans-serif;}
     }
   }
   .main-inner{
-    background: #f8f8f8;height:100%;padding-top: 130px ;
+    background: #f8f8f8;padding-top: 130px ;
+    position:relative;height:100vh;overflow-y: scroll;
+    // Todo 체크
+    & .todo_check{
+      position:fixed;top:160px;right:20px;
+      min-width:400px;height:calc(100% - 150px);overflow:auto;
+      padding:10px;border-radius: 10px;
+      background: rgba(248, 248, 248, 1);
+      & .todo-title{margin-bottom:20px;}
+      & .todo-check-info{
+        padding:20px 0;position:relative;min-height:80px;
+        & .todo-success{
+          position:absolute;top:0;right:20px;min-height:30px;
+
+        }
+      }
+    }
 
     // todo 리스트
     & .todo_list{
-      width:500px;
+      max-width:1200px;background:#fff;
+      & .todo-info-tag{
+        text-align:right;
+        padding:20px 0;
+      }
       & #todo_num{text-align: center;}
       .detail_button{
         display:block;width:80%;text-align:left;
@@ -62,17 +82,47 @@ body{font-family: 'Noto Sans KR', sans-serif;}
     }
   }
 }
+// todo 디테일
+.todo_detail{
+ position:relative;padding-top: 130px;
+  & .todo_detail_header{
+    position:fixed;top:0;left:0;
+    background: #4a76ec;
+    width:100%;height:120px;padding:0 10px;
+    box-shadow: 0 0 10px #4b4b4b;
+    & .close_detail{
+      position:absolute;top:10px;right:20px;
+      font-weight: bold;font-size:32px;color:#fff;
+    }
+    & h1{
+      color:#fff;font-size:34px;
+      & small{color:#fff;}
+    }
+  }
+  & .todo_detail_body{
+    padding:10px 30px 30px 30px;font-size:24px;
+  }
+  & .todo_detail_footer{
+    position: fixed;bottom:0;left:0;width:100%;height:100px;
+    background: #ccc;box-shadow: 0 -6px 15px rgba(75, 75, 75, 0.3);
+  }
+}
 
 // todo 등록 모달
 
 #myModal{
   & .modal-body{
     min-height:400px;overflow:hidden;
-    & .todo-label{
-      font-size:24px;
-    }
-    & #todo_text{
-      min-height: 250px;width:470px;display:block;
+    & .todo-label{font-size:24px;}
+    & #todo_text{min-height: 250px;width:470px;display:block;}
+    & .todo_check{
+      padding:20px 0;
+      & label{
+        font-size:18px;
+        & #is_todo{
+          width:20px;height:20px;vertical-align:-3px;
+        }
+      }
     }
   }
 

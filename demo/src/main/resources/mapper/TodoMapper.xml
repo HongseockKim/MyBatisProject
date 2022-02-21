@@ -7,13 +7,24 @@
         order by id DESC;
     </select>
 
+    <select id="findTodo" resultType="Todo">
+        SELECT * from todo where todo_set = 1
+    </select>
+
     <insert id="inserTodo" parameterType="Todo">
-        Insert into todo(todo)
-        values(#{todo})
+        Insert into todo(todo,todo_set)
+        values(#{todo},#{todo_set})
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">
-    delete from todo where id = ${id}
+    delete from todo where id = #{id}
     </delete>
 
+    <select id="getDetailTodo" resultType="Todo">
+        select * from todo where id = #{id}
+    </select>
+
+    <update id="updateTodoSet" parameterType="Todo">
+        UPDATE todo  set todo_set = false  where id = #{id};
+    </update>
 </mapper>

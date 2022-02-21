@@ -12,6 +12,12 @@ import java.util.List;
 @Transactional
 public interface TodoMapper {
     List<Todo> findAll();
+
+    List<Todo> findTodo();
     void inserTodo(Todo todo);
     void deleteItem(long id);
+
+    Todo getDetailTodo(long id);
+
+    void updateTodoSet(long id);
 }
