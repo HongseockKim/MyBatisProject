@@ -4,12 +4,27 @@
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
         select * from todo
-        order by id DESC;
+        order by id DESC LIMIT 0,10;
+    </select>
+
+    <select id="findTodo" resultType="Todo">
+        SELECT * from todo where todo_set = 1
     </select>
 
     <insert id="inserTodo" parameterType="Todo">
-        Insert into todo(todo,createdDate)
-        values(#{todo},timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)
+        Insert into todo(todo,todo_set)
+        values(#{todo},#{todo_set})
     </insert>
 
+    <delete id="deleteItem" parameterType="Todo">
+    delete from todo where id = #{id}
+    </delete>
+
+    <select id="getDetailTodo" resultType="Todo">
+        select * from todo where id = #{id}
+    </select>
+
+    <update id="updateTodoSet" parameterType="Todo">
+        UPDATE todo  set todo_set = false  where id = #{id};
+    </update>
 </mapper>

@@ -10,4 +10,6 @@ public class Todo {
     private Boolean todo_set;
     private String createdDate;
     private String total;
+    private String imageSrc;
+    private String todoTotal;
 }

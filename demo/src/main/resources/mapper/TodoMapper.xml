@@ -3,19 +3,26 @@
 
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
-        select s.*,(
-        select count(*) from todo
-                   ) as total from todo s
-        order by id DESC LIMIT 0,10;
+        select
+               id,
+               todo,
+               createdDate,
+               todo_set,
+               imageSrc,
+               ( select count(id) from todo where id != 'null') total,
+          ( select count(todo_set) from todo where todo_set = 1 ) todoTotal from todo
+        order by id DESC
+            LIMIT 0,10;
     </select>
 
     <select id="findTodo" resultType="Todo">
         SELECT * from todo where todo_set = 1
+        order by createdDate DESC;
     </select>
 
     <insert id="inserTodo" parameterType="Todo">
-        Insert into todo(todo,todo_set)
-        values(#{todo},#{todo_set})
+        Insert into todo(todo,todo_set,imageSrc)
+        values(#{todo},#{todo_set},#{imageSrc})
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">

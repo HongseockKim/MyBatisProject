@@ -1,9 +1,12 @@
 <%@ page import="java.sql.Array" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.demo.model.Todo" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <%@ include file="header.jsp"%>
 <body>
@@ -38,7 +41,32 @@
             </div>
             <div class="todo_list">
                 <div class="todo-info-tag">
-                    <p>총 : <span id="todo-badge" class="badge">${todoList[0].total}</span></p>
+                    <p class="badge_todo">총 :
+                        <span id="todo-badge" class="badge">
+                            <c:set var="todoTotal" value="${todoList[0].total}"/>
+                            <c:choose>
+                                <c:when test="${empty todoTotal}">
+                                    0
+                                </c:when>
+                                <c:otherwise>
+                                    ${todoTotal}
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+                    </p>
+                    <p class="badge_total_todo">등록된 Todo :
+                        <span id="todo_total_badge" class="badge">
+                             <c:set var="todoRegTotal" value="${todoList[0].todoTotal}"/>
+                                <c:choose>
+                                    <c:when test="${empty todoRegTotal}">
+                                        0
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${todoRegTotal}
+                                    </c:otherwise>
+                                </c:choose>
+                        </span>
+                    </p>
                 </div>
                 <table class="table table-bordered">
                     <colgroup>
@@ -58,14 +86,25 @@
                                 <div class="todo_item">
                                     <button type="button" class="btn btn-danger delete_todo" data-get-id=${todo.id}>삭제</button>
                                     <button type="button" class="detail_button" data-get-id=${todo.id}>
-                                            ${todo.todo}
+                                        ${todo.todo}
                                         <c:if test="${todo.todo_set}">
                                             <span class="badge">Todo!</span>
                                         </c:if>
+
+                                        <c:set var="img" value="${todo.imageSrc}"/>
+                                        <c:choose>
+                                            <c:when test="${empty img}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="badge">img</span>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </button>
                                 </div>
                             </td>
-                            <td class="create_date">${todo.createdDate}</td>
+                            <td class="create_date">
+                                    ${todo.createdDate}
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -76,7 +115,17 @@
                     <div class="panel panel-default todo-check-item">
                         <div class="panel-heading"><h3>ToDo Check!!</h3></div>
                         <div class="panel-body">
-                            ${todocheck.todo}
+                                ${todocheck.todo}
+                                <c:set var="imageSrc" value="${todocheck.imageSrc}"/>
+                                <c:choose>
+                                    <c:when test="${empty imageSrc}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="image_tag">
+                                            <img src="<c:url value="resources/img/"/>${imageSrc}" alt="">
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                             <div class="todo-check-info">
                                 <button type="button" class="btn btn-success todo-success" value=${todocheck.id}>Todo 완료</button>
                             </div>
@@ -101,6 +150,9 @@
                     <form action="addTodo" method="post">
                         <label class="todo-label" for="todo_text">Todo</label>
                         <textarea id="todo_text" type="text" name="todo"></textarea>
+                        <div class="image_src_input">
+                            <label for="image_src">이미지 있을시 이미지이름만<input id="image_src" type="text" name="imageSrc"></label>
+                        </div>
                         <div class="todo_check">
                             <label for="is_todo">투두 등록 : <input id="is_todo" type="checkbox" name="todo_set"></label>
                         </div>
