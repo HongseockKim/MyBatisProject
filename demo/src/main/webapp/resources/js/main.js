@@ -10,7 +10,6 @@ function percentsEvent(){
     let todoItem =  $('.todo_item');
     let todoCheckItem = $('.todo-check-item');
 
-    $('#todo-badge').text(todoItem.length);
     $('#progress-bar-todo').css({'transition':'all 0.5s','width': (todoCheckItem.length / todoItem.length) * 100 + "%"});
 }
 

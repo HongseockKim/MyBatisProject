@@ -3,6 +3,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.MyService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @Controller
 public class MyController {
     @Autowired MyService service;
 
     @RequestMapping(value ={"/","","index.do","index"}, method = RequestMethod.GET)
     public String getMain(Model model) {
+
+        System.out.println("model = " + service.getTodo());
+
         model.addAttribute("todoList",service.getTodo());
         model.addAttribute("todoCheck",service.findTodo());
-        System.out.println("메인");
+
         return "index";
     }
 

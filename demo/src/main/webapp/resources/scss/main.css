@@ -64,7 +64,7 @@ body {
 .wrapper .main-inner .todo_check {
   position: fixed;
   top: 160px;
-  right: 20px;
+  right: 100px;
   min-width: 400px;
   height: calc(100% - 150px);
   overflow: auto;
@@ -74,6 +74,15 @@ body {
 }
 .wrapper .main-inner .todo_check .todo-title {
   margin-bottom: 20px;
+  text-align: left;
+  overflow: hidden;
+}
+.wrapper .main-inner .todo_check .todo-title .todo-check-label {
+  float: right;
+  min-width: 60px;
+}
+.wrapper .main-inner .todo_check .todo-title .todo-check-label #todo-check-badge {
+  vertical-align: 3px;
 }
 .wrapper .main-inner .todo_check .todo-check-info {
   padding: 20px 0;
@@ -89,6 +98,9 @@ body {
 .wrapper .main-inner .todo_list {
   max-width: 1200px;
   background: #fff;
+}
+.wrapper .main-inner .todo_list th {
+  text-align: center;
 }
 .wrapper .main-inner .todo_list .todo-info-tag {
   text-align: right;
@@ -120,6 +132,9 @@ body {
 }
 .wrapper .main-inner .todo_list .todo_item:hover .delete_todo {
   right: 0;
+}
+.wrapper .main-inner .todo_list .create_date {
+  text-align: center;
 }
 
 .todo_detail {

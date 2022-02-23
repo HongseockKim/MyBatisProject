@@ -9,4 +9,5 @@ public class Todo {
     private String todo;
     private Boolean todo_set;
     private String createdDate;
+    private String total;
 }

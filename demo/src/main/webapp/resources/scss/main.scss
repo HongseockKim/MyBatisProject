@@ -39,11 +39,21 @@ body{font-family: 'Noto Sans KR', sans-serif;}
     position:relative;height:100vh;overflow-y: scroll;
     // Todo 체크
     & .todo_check{
-      position:fixed;top:160px;right:20px;
+      position:fixed;top:160px;right:100px;
       min-width:400px;height:calc(100% - 150px);overflow:auto;
       padding:10px;border-radius: 10px;
       background: rgba(248, 248, 248, 1);
-      & .todo-title{margin-bottom:20px;}
+      & .todo-title{
+        margin-bottom:20px;
+        text-align:left;
+        overflow:hidden;
+        & .todo-check-label{
+          float: right;min-width: 60px;
+          & #todo-check-badge{
+            vertical-align: 3px;
+          }
+        }
+      }
       & .todo-check-info{
         padding:20px 0;position:relative;min-height:80px;
         & .todo-success{
@@ -56,6 +66,9 @@ body{font-family: 'Noto Sans KR', sans-serif;}
     // todo 리스트
     & .todo_list{
       max-width:1200px;background:#fff;
+      & th{
+        text-align: center;
+      }
       & .todo-info-tag{
         text-align:right;
         padding:20px 0;
@@ -78,6 +91,9 @@ body{font-family: 'Noto Sans KR', sans-serif;}
             right:0;
           }
         }
+      }
+      & .create_date{
+        text-align: center;
       }
     }
   }

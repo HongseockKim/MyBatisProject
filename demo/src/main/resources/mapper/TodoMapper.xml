@@ -3,8 +3,10 @@
 
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
-        select * from todo
-        order by id DESC;
+        select s.*,(
+        select count(*) from todo
+                   ) as total from todo s
+        order by id DESC LIMIT 0,10;
     </select>
 
     <select id="findTodo" resultType="Todo">

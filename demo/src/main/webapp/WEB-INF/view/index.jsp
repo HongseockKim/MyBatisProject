@@ -38,18 +38,18 @@
             </div>
             <div class="todo_list">
                 <div class="todo-info-tag">
-                    <p>총 : <span id="todo-badge" class="badge"></span></p>
+                    <p>총 : <span id="todo-badge" class="badge">${todoList[0].total}</span></p>
                 </div>
                 <table class="table table-bordered">
                     <colgroup>
-                        <col width="10%">
-                        <col width="70%">
-                        <col width="20%">
+                        <col width="5%">
+                        <col width="80%">
+                        <col width="15%">
                     </colgroup>
                     <tr>
                         <th>번호</th>
                         <th>Todo</th>
-                        <th>날짜</th>
+                        <th>등록날짜</th>
                     </tr>
                     <c:forEach items="${todoList}" var="todo" varStatus="status">
                         <tr>
@@ -65,13 +65,13 @@
                                     </button>
                                 </div>
                             </td>
-                            <td>${todo.createdDate}</td>
+                            <td class="create_date">${todo.createdDate}</td>
                         </tr>
                     </c:forEach>
                 </table>
             </div>
             <div class="todo_check">
-                <h3 class="todo-title">Todo 해야할일</h3>
+                <h3 class="todo-title">Todo 해야할일<span class="todo-check-label">총 : <span id="todo-check-badge" class="badge">${todoCheck.size()}</span></span></h3>
                 <c:forEach items="${todoCheck}" var="todocheck" varStatus="status">
                     <div class="panel panel-default todo-check-item">
                         <div class="panel-heading"><h3>ToDo Check!!</h3></div>
