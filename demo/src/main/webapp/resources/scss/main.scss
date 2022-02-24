@@ -104,6 +104,20 @@ body{font-family: 'Noto Sans KR', sans-serif;}
       & .create_date{
         text-align: center;
       }
+      & .page_nation_tag{
+        & .page_nation{
+          display: flex;justify-content:space-around;align-items:center;
+          max-width:250px;margin: 0 auto;
+          & .page_num{
+            flex-basis: 20%;border-radius:20px;background:#4a76ec;
+            margin-right:10px;text-align:center;overflow:hidden;
+            & .paging_num{
+              display: block;color:#fff;width:100%;padding:2px;
+            }
+            &:last-child{margin-right: 0;}
+          }
+        }
+      }
     }
   }
 }

@@ -149,6 +149,30 @@ body {
 .wrapper .main-inner .todo_list .create_date {
   text-align: center;
 }
+.wrapper .main-inner .todo_list .page_nation_tag .page_nation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 250px;
+  margin: 0 auto;
+}
+.wrapper .main-inner .todo_list .page_nation_tag .page_nation .page_num {
+  flex-basis: 20%;
+  border-radius: 20px;
+  background: #4a76ec;
+  margin-right: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+.wrapper .main-inner .todo_list .page_nation_tag .page_nation .page_num .paging_num {
+  display: block;
+  color: #fff;
+  width: 100%;
+  padding: 2px;
+}
+.wrapper .main-inner .todo_list .page_nation_tag .page_nation .page_num:last-child {
+  margin-right: 0;
+}
 
 .todo_detail {
   position: relative;

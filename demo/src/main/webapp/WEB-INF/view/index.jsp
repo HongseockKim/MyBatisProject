@@ -108,12 +108,24 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <div class="page_nation_tag">
+                    <ul class="page_nation">
+                        <c:forEach items="${todoList}" var="todoNum" varStatus="number">
+                            <li class="page_num">
+                                <button type="button" class="paging_num">${number.index + 1}</button>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
             </div>
             <div class="todo_check">
                 <h3 class="todo-title">Todo 해야할일<span class="todo-check-label">총 : <span id="todo-check-badge" class="badge">${todoCheck.size()}</span></span></h3>
                 <c:forEach items="${todoCheck}" var="todocheck" varStatus="status">
                     <div class="panel panel-default todo-check-item">
-                        <div class="panel-heading"><h3>ToDo Check!!</h3></div>
+                        <div class="panel-heading">
+                            <h3>ToDo Check!!</h3>
+                            <span id="todo_check_dates" class="badge">${todoCheck.dates}</span>
+                        </div>
                         <div class="panel-body">
                                 ${todocheck.todo}
                                 <c:set var="imageSrc" value="${todocheck.imageSrc}"/>

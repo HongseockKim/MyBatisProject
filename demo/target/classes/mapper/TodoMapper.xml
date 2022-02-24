@@ -4,25 +4,34 @@
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
         select
-               id,
-               todo,
-               createdDate,
-               todo_set,
-               imageSrc,
-               ( select count(id) from todo where id != 'null') total,
-          ( select count(todo_set) from todo where todo_set = 1 ) todoTotal from todo
+            id,
+            todo,
+            createdDate,
+            todo_set,
+            imageSrc,
+            ( select count(id) from todo where id != 'null') as total,
+            ( select count(todo_set) from todo where todo_set = 1 ) as todoTotal
+        from contentdata.todo
         order by id DESC
             LIMIT 0,10;
     </select>
 
     <select id="findTodo" resultType="Todo">
-        SELECT * from todo where todo_set = 1
+        select
+            id,
+            todo,
+            createdDate,
+            todo_set,
+            DATEDIFF(now(),todos.createdDate) as dates
+        from todo todos
+        where todo_set = 1
         order by createdDate DESC;
     </select>
 
     <insert id="inserTodo" parameterType="Todo">
+--         여기서 TRIM 은 문자열의 양쪽 공백을 없애줌 내부 공백은 아님
         Insert into todo(todo,todo_set,imageSrc)
-        values(#{todo},#{todo_set},#{imageSrc})
+        values(TRIM(#{todo}),TRIM(#{todo_set}),TRIM(#{imageSrc}))
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">
