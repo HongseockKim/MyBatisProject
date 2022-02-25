@@ -4,8 +4,15 @@ $(function(){
     todoListOpenDetail();
     HandleDeleteTodo();
     todoRegister();
+    ExpansionCheckTodo();
+    todoAdditionalPlan();
 });
-
+function todoAdditionalPlan(){
+    $('.todo-additional-plan').on('click', function(){
+        $('#additional-plan').modal('show');
+        console.log('ww')
+    });
+}
 function percentsEvent(){
     let todoItem =  $('.todo_item');
     let todoCheckItem = $('.todo-check-item');
@@ -36,6 +43,15 @@ function todoRegister(){
             }
         });
     })
+}
+
+function ExpansionCheckTodo(){
+    let getCheckTodoId = undefined;
+    $('.expansion-btn').on('click', function(){
+        getCheckTodoId = $(this).val();
+        console.log('checkTodoGetId' + getCheckTodoId);
+        location.href = `expansion/?getCheckId=${getCheckTodoId}`;
+    });
 }
 
 function handleModalTodoOpen() {

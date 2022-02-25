@@ -9,6 +9,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <%@ include file="header.jsp"%>
+<link href="<c:url value="resources/css/reset.css"/>" rel='stylesheet' />
+<link href="<c:url value="resources/scss/main.css" />" rel='stylesheet' />
 <body>
 <div class="wrapper">
     <header class="header">
@@ -90,7 +92,6 @@
                                         <c:if test="${todo.todo_set}">
                                             <span class="badge">Todo!</span>
                                         </c:if>
-
                                         <c:set var="img" value="${todo.imageSrc}"/>
                                         <c:choose>
                                             <c:when test="${empty img}">
@@ -118,17 +119,19 @@
                     </ul>
                 </div>
             </div>
+
+            <%--todoCheck--%>
             <div class="todo_check">
                 <h3 class="todo-title">Todo 해야할일<span class="todo-check-label">총 : <span id="todo-check-badge" class="badge">${todoCheck.size()}</span></span></h3>
-                <c:forEach items="${todoCheck}" var="todocheck" varStatus="status">
+                <c:forEach items="${todoCheck}" var="todoch" varStatus="status">
                     <div class="panel panel-default todo-check-item">
                         <div class="panel-heading">
                             <h3>ToDo Check!!</h3>
-                            <span id="todo_check_dates" class="badge">${todoCheck.dates}</span>
+                            <span class="badge">${todoch.dates} 일</span>
                         </div>
                         <div class="panel-body">
-                                ${todocheck.todo}
-                                <c:set var="imageSrc" value="${todocheck.imageSrc}"/>
+                                ${todoch.todo}
+                                <c:set var="imageSrc" value="${todoch.imageSrc}"/>
                                 <c:choose>
                                     <c:when test="${empty imageSrc}">
                                     </c:when>
@@ -139,8 +142,9 @@
                                     </c:otherwise>
                                 </c:choose>
                             <div class="todo-check-info">
-                                <button type="button" class="btn btn-success todo-success" value=${todocheck.id}>Todo 완료</button>
+                                <button type="button" class="btn btn-success todo-success" value=${todoch.id}>Todo 완료</button>
                             </div>
+                            <button type="button" class="btn expansion-btn" value=${todoch.id}>확장하기</button>
                         </div>
                     </div>
                 </c:forEach>
@@ -148,7 +152,9 @@
         </div>
     </main>
     <footer>
-        <div class="inner"></div>
+        <div class="inner">
+
+        </div>
     </footer>
     <%--todo modal--%>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

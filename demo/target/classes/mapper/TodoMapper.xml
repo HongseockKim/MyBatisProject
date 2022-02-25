@@ -22,7 +22,7 @@
             todo,
             createdDate,
             todo_set,
-            DATEDIFF(now(),todos.createdDate) as dates
+            DATEDIFF(now(),todos.createdDate) dates
         from todo todos
         where todo_set = 1
         order by createdDate DESC;
@@ -35,11 +35,18 @@
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">
-    delete from todo where id = #{id}
+        delete from todo where id = #{id}
     </delete>
 
     <select id="getDetailTodo" resultType="Todo">
-        select * from todo where id = #{id}
+        select
+            todo.id,
+            todo.todo,
+            todo.createdDate,
+            todo.imageSrc,
+            todo.todo_set,
+            DATEDIFF(now(),todo.createdDate) dates
+        from todo todo where id = #{id};
     </select>
 
     <update id="updateTodoSet" parameterType="Todo">

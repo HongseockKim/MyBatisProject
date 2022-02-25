@@ -43,4 +43,9 @@ public class MyService {
         todoMapper.updateTodoSet(id);
         return true;
     }
+
+    public Todo expansionCheck(long id) {
+        Todo todo = todoMapper.getDetailTodo(id);
+        return todo;
+    }
 }

@@ -12,5 +12,5 @@ public class Todo {
     private String total;
     private String imageSrc;
     private String todoTotal;
-    private String  dates;
+    private String dates;
 }

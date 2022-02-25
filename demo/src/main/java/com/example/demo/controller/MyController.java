@@ -3,7 +3,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.MyService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
 @Controller
-@RequiredArgsConstructor
 public class MyController {
     @Autowired MyService service;
+
+    public MyController() {
+    }
 
     @RequestMapping(value ={"/","","index.do","index"}, method = RequestMethod.GET)
     public String getMain(Model model) {
 
-        System.out.println("model = " + service.getTodo());
+        System.out.println("service.findTodo() = " + service.findTodo());
 
         model.addAttribute("todoList",service.getTodo());
         model.addAttribute("todoCheck",service.findTodo());
@@ -55,5 +55,12 @@ public class MyController {
         System.out.println("id = " + id);
         service.updateTodoSet(id);
         return "index";
+    }
+
+    @GetMapping("/expansion")
+    public String getExpansionTodo(@RequestParam long getCheckId,Model CheckTodo){
+        System.out.println("getCheckId = " + getCheckId);
+        CheckTodo.addAttribute("CheckTodo",service.expansionCheck(getCheckId));
+        return "expansion";
     }
 }
