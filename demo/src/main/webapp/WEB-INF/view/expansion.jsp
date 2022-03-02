@@ -22,6 +22,9 @@
                     <li class="expansion-item">
                         <button type="button" class="expansion-btns todo-tracking-progress">진행현황</button>
                     </li>
+                    <li class="expansion-item">
+                        <button type="button" class="expansion-btns todo-history-back" data-history="data-history">뒤로가기</button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -49,9 +52,28 @@
                 <h4 class="modal-title">추가계획</h4>
             </div>
             <div class="modal-body">
-                <form action="addTodo" method="post">
+                <form action="additional" method="post">
                     <div class="additional-area">
-
+                        <div class="additional">
+                            <p class="additional-header"><label for="additional-textarea">추가 계획</label></p>
+                            <textarea id="additional-textarea" name="additional"></textarea>
+                        </div>
+                        <div class="additional select-area">
+                            <p>
+                                <label for="difficulty">난이도</label>
+                                <select name="difficulty" id="difficulty">
+                                    <option value="상">상</option>
+                                    <option value="중">중</option>
+                                    <option value="하">하</option>
+                                </select>
+                            </p>
+                            <div>
+                                <button type="button" class="todo_sub_add">추가</button>
+                            </div>
+                            <ul class="todo_sub_info">
+                                <li class="todo_sub"><label for="todo_sub_01">추가01<input id="todo_sub_01" type="text" name="todo_sub_01"></label><button type="button" class="todo_sub_delete">X</button></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="todo-registration">등록</button>

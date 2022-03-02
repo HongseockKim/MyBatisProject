@@ -6,13 +6,22 @@ $(function(){
     todoRegister();
     ExpansionCheckTodo();
     todoAdditionalPlan();
+    HandleHistoryBack();
+    TodoSubAdd();
 });
 function todoAdditionalPlan(){
     $('.todo-additional-plan').on('click', function(){
         $('#additional-plan').modal('show');
-        console.log('ww')
     });
 }
+
+function HandleHistoryBack(){
+    // data-history="data-history" 클릭 공통처리
+    $('[data-history="data-history"]').on('click', function(){
+       window.history.back();
+    });
+}
+
 function percentsEvent(){
     let todoItem =  $('.todo_item');
     let todoCheckItem = $('.todo-check-item');
@@ -88,6 +97,35 @@ function HandleDeleteTodo() {
         let getId = $(this).data('get-id');
         CommonAjax(Number(getId));
     });
+}
+
+function TodoSubAdd() {
+    let addNum = 2;
+    let todoSubListWrap = $('.todo_sub_info');
+
+
+    $('.todo_sub_add').on('click', function(){
+        let todoSubListItem = `<li class="todo_sub">
+                                     <label for="todo_sub_0${addNum}">
+                                        추가0${addNum}<input id="todo_sub_0${addNum}" type="text" name="todo_sub_0${addNum}">
+                                     </label>
+                                     <button type="button" class="todo_sub_delete" data-index=""${addNum}+"">X</button>
+                                </li>`;
+
+        todoSubListWrap.append(todoSubListItem);
+        addNum++;
+
+
+        $('.todo_sub_delete').on('click', function(){
+            console.log($(this).parent('li').index());
+            let todoSubListItem = $(this).parent('li');
+            todoSubListItem.remove();
+            addNum--;
+        });
+        console.log(addNum);
+    })
+
+
 }
 
 

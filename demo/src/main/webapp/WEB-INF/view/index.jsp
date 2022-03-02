@@ -172,7 +172,7 @@
                             <label for="image_src">이미지 있을시 이미지이름만<input id="image_src" type="text" name="imageSrc"></label>
                         </div>
                         <div class="todo_check">
-                            <label for="is_todo">투두 등록 : <input id="is_todo" type="checkbox" name="todo_set"></label>
+                            <label for="is_todo">Todo Check : <input id="is_todo" type="checkbox" name="todo_set"></label>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="todo-registration">등록</button>
