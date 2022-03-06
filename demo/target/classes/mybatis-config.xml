@@ -14,5 +14,6 @@
 
     <typeAliases>
         <typeAlias type="com.example.demo.model.Todo" alias="Todo"/>
+        <typeAlias type="com.example.demo.model.contentVo" alias="contentVo"/>
     </typeAliases>
 </configuration>

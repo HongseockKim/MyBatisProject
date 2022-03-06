@@ -3,25 +3,50 @@
 
 <mapper namespace="com.example.demo.mapper.TodoMapper">
     <select id="findAll" resultType="Todo">
-        select * from todo
-        order by id DESC LIMIT 0,10;
+        select
+            id,
+            todo,
+            createdDate,
+            todo_set,
+            imageSrc,
+            ( select count(id) from todo where id != 'null') as total,
+            ( select count(todo_set) from todo where todo_set = 1 ) as todoTotal
+        from contentdata.todo
+        order by id DESC
+            LIMIT 0,10;
     </select>
 
     <select id="findTodo" resultType="Todo">
-        SELECT * from todo where todo_set = 1
+        select
+            id,
+            todo,
+            createdDate,
+            todo_set,
+            DATEDIFF(now(),todos.createdDate) dates
+        from todo todos
+        where todo_set = 1
+        order by createdDate DESC;
     </select>
 
     <insert id="inserTodo" parameterType="Todo">
-        Insert into todo(todo,todo_set)
-        values(#{todo},#{todo_set})
+--         여기서 TRIM 은 문자열의 양쪽 공백을 없애줌 내부 공백은 아님
+        Insert into todo(todo,todo_set,imageSrc,createdDate)
+        values(TRIM(#{todo}),TRIM(#{todo_set}),TRIM(#{imageSrc}),TRIM(now()))
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">
-    delete from todo where id = #{id}
+        delete from todo where id = #{id}
     </delete>
 
     <select id="getDetailTodo" resultType="Todo">
-        select * from todo where id = #{id}
+        select
+            todo.id,
+            todo.todo,
+            todo.createdDate,
+            todo.imageSrc,
+            todo.todo_set,
+            DATEDIFF(now(),todo.createdDate) dates
+        from todo todo where id = #{id};
     </select>
 
     <update id="updateTodoSet" parameterType="Todo">

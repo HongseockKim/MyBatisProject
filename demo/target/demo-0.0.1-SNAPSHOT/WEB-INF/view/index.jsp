@@ -1,19 +1,16 @@
+<%@ page import="java.sql.Array" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.demo.model.Todo" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
-<head>
-    <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-    <script src="<c:url value="resources/js/main.js"/>" ></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="<c:url value="resources/css/reset.css"/>" rel='stylesheet' />
-    <link href="<c:url value="resources/scss/main.css" />" rel='stylesheet' />
-</head>
+<%@ include file="header.jsp"%>
+<link href="<c:url value="resources/css/reset.css"/>" rel='stylesheet' />
+<link href="<c:url value="resources/static.css/main.css" />" rel='stylesheet' />
 <body>
 <div class="wrapper">
     <header class="header">
@@ -34,26 +31,164 @@
     </header>
     <main>
         <div class="container-fluid main-inner">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success"
+                        id="progress-bar-todo"
+                        role="progressbar"
+                        aria-valuenow="100"
+                        aria-valuemin="0"
+                        aria-valuemax="100">
+                    <span class="sr-only">40% Complete (success)</span>
+                </div>
+            </div>
             <div class="todo_list">
+                <div class="todo-info-tag">
+                    <p class="badge_todo">총 :
+                        <span id="todo-badge" class="badge">
+                            <c:set var="todoTotal" value="${todoList[0].total}"/>
+                            <c:choose>
+                                <c:when test="${empty todoTotal}">
+                                    0
+                                </c:when>
+                                <c:otherwise>
+                                    ${todoTotal}
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+                    </p>
+                    <p class="badge_total_todo">등록된 Todo :
+                        <span id="todo_total_badge" class="badge">
+                             <c:set var="todoRegTotal" value="${todoList[0].todoTotal}"/>
+                                <c:choose>
+                                    <c:when test="${empty todoRegTotal}">
+                                        0
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${todoRegTotal}
+                                    </c:otherwise>
+                                </c:choose>
+                        </span>
+                    </p>
+                </div>
                 <table class="table table-bordered">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="80%">
+                        <col width="15%">
+                    </colgroup>
+                    <tr>
+                        <th>번호</th>
+                        <th>Todo</th>
+                        <th>등록날짜</th>
+                    </tr>
                     <c:forEach items="${todoList}" var="todo" varStatus="status">
                         <tr>
-                            <th>번호</th>
-                            <th>Todo</th>
-                            <th>날짜</th>
-                        </tr>
-                        <tr>
-                            <td>${status.index}</td>
-                            <td>${todo.todo}</td>
-                            <td>${todo.createdDate}</td>
+                            <td id="todo_num">${status.index + 1}</td>
+                            <td>
+                                <div class="todo_item">
+                                    <button type="button" class="btn btn-danger delete_todo" data-get-id=${todo.id}>삭제</button>
+                                    <button type="button" class="detail_button" data-get-id=${todo.id}>
+                                            ${todo.todo}
+                                        <c:if test="${todo.todo_set}">
+                                            <span class="badge">Todo!</span>
+                                        </c:if>
+                                        <c:set var="img" value="${todo.imageSrc}"/>
+                                        <c:choose>
+                                            <c:when test="${empty img}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="badge">img</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="create_date">
+                                    ${todo.createdDate}
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
+                <div class="page_nation_tag">
+                    <ul class="page_nation">
+                        <c:forEach items="${todoList}" var="todoNum" varStatus="number">
+                            <li class="page_num">
+                                <button type="button" class="paging_num">${number.index + 1}</button>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="multi-content">
+                    <div class="inner">
+                        <div class="jumbotron">
+                            <h1>Hello, My Batis</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium animi asperiores aspernatur corporis delectus dolore, fugiat inventore laborum libero modi necessitatibus quia quo recusandae sapiente sit soluta unde, voluptate.</p>
+                        </div>
+                        ${contents}
+                        <div class="content-list">
+                            <div class="row">
+                                <div class="thumbnail registration-content">
+                                    <input type="text" class="img-src">
+                                    <div class="caption">
+                                        <h3> 제목 : <input type="text" class="content-title"></h3>
+                                        <textarea class="content"></textarea>
+                                        <div class="submit-btn-wrap">
+                                            <button type="button" class="content-save-btn" onclick="contentRegeister()">등록하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <c:forEach items="${contentList}" var="content" varStatus="status">
+                                ${content}
+                            </c:forEach>
+                            <div class="row">
+                                <div class="thumbnail registration-content">
+                                    <div class="caption">
+                                        <h3>ww</h3>
+                                        <p>weqweqwe</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%--todoCheck--%>
+            <div class="todo_check">
+                <h3 class="todo-title">Todo 해야할일<span class="todo-check-label">총 : <span id="todo-check-badge" class="badge">${todoCheck.size()}</span></span></h3>
+                <c:forEach items="${todoCheck}" var="todoch" varStatus="status">
+                    <div class="panel panel-default todo-check-item">
+                        <div class="panel-heading">
+                            <h3>ToDo Check!!</h3>
+                            <span class="badge">${todoch.dates} 일</span>
+                        </div>
+                        <div class="panel-body">
+                                ${todoch.todo}
+                            <c:set var="imageSrc" value="${todoch.imageSrc}"/>
+                            <c:choose>
+                                <c:when test="${empty imageSrc}">
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="image_tag">
+                                        <img src="<c:url value="resources/img/"/>${imageSrc}" alt="">
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="todo-check-info">
+                                <button type="button" class="btn btn-success todo-success" value=${todoch.id}>Todo 완료</button>
+                            </div>
+                            <button type="button" class="btn expansion-btn" value=${todoch.id}>확장하기</button>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </main>
     <footer>
-        <div class="inner"></div>
+        <div class="inner">
+
+        </div>
     </footer>
     <%--todo modal--%>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -65,8 +200,17 @@
                 </div>
                 <div class="modal-body">
                     <form action="addTodo" method="post">
-                        <label>todo : <input type="text" name="todo"></label>
-                        <button type="submit" class="todo-registration">등록</button>
+                        <label class="todo-label" for="todo_text">Todo</label>
+                        <textarea id="todo_text" type="text" name="todo"></textarea>
+                        <div class="image_src_input">
+                            <label for="image_src">이미지 있을시 이미지이름만<input id="image_src" type="text" name="imageSrc"></label>
+                        </div>
+                        <div class="todo_check">
+                            <label for="is_todo">Todo Check : <input id="is_todo" type="checkbox" name="todo_set"></label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="todo-registration">등록</button>
+                        </div>
                     </form>
                 </div>
             </div>

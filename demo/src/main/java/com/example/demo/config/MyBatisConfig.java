@@ -23,8 +23,9 @@ public class MyBatisConfig {
         sessionFactory.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-        //sessionFactory.setTypeAliasesPackage("com.example.demo.model.Todo");
-        sessionFactory.setTypeAliases(Class.forName("com.example.demo.model.Todo"));
+        sessionFactory.setTypeAliasesPackage("com.example.demo.model");
+//        sessionFactory.setTypeAliases(Class.forName("com.example.demo.model.Todo"));
+//        sessionFactory.setTypeAliases(Class.forName("com.example.demo.model.contentVo"));
         return sessionFactory.getObject();
     }
 

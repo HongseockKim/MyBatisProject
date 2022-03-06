@@ -10,7 +10,7 @@
 <html>
 <%@ include file="header.jsp"%>
 <link href="<c:url value="resources/css/reset.css"/>" rel='stylesheet' />
-<link href="<c:url value="resources/scss/main.css" />" rel='stylesheet' />
+<link href="<c:url value="resources/static.css/main.css" />" rel='stylesheet' />
 <body>
 <div class="wrapper">
     <header class="header">
@@ -88,7 +88,7 @@
                                 <div class="todo_item">
                                     <button type="button" class="btn btn-danger delete_todo" data-get-id=${todo.id}>삭제</button>
                                     <button type="button" class="detail_button" data-get-id=${todo.id}>
-                                        ${todo.todo}
+                                            ${todo.todo}
                                         <c:if test="${todo.todo_set}">
                                             <span class="badge">Todo!</span>
                                         </c:if>
@@ -118,6 +118,54 @@
                         </c:forEach>
                     </ul>
                 </div>
+                <div class="multi-content">
+                    <div class="inner">
+                        <div class="jumbotron">
+                            <h1>Hello, My Batis</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium animi asperiores aspernatur corporis delectus dolore, fugiat inventore laborum libero modi necessitatibus quia quo recusandae sapiente sit soluta unde, voluptate.</p>
+                        </div>
+                        ${contents}
+                        <div class="content-list">
+                            <div class="row">
+                                <div class="thumbnail registration-content">
+                                    <input type="text" class="img-src">
+                                    <div class="caption">
+                                        <h3> 제목 : <input type="text" class="content-title"></h3>
+                                        <textarea class="content"></textarea>
+                                        <div class="submit-btn-wrap">
+                                            <button type="button" class="content-save-btn" onclick="contentRegeister()">등록하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <c:forEach items="${contentList}" var="content" varStatus="status">
+                                <div class="row" id="${content.id}">
+                                    <div class="thumbnail registration-content">
+                                        <div class="caption">
+                                            <div class="reference-modal">
+                                                <div class="modal-inner">
+                                                    <ul class="notice">
+                                                        <li class="notice-item">
+                                                            <span class="title">TODO</span>
+                                                            <span class="date">등록일</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="reference-btn">참조</button>
+                                            <h3>${content.contentTitle}</h3>
+                                            <p>${content.content}</p>
+                                            <p>${content.createdDate}</p>
+                                            <div class="option-btn-con">
+                                                <button type="button" class="save-reference">저장</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <%--todoCheck--%>
@@ -131,16 +179,16 @@
                         </div>
                         <div class="panel-body">
                                 ${todoch.todo}
-                                <c:set var="imageSrc" value="${todoch.imageSrc}"/>
-                                <c:choose>
-                                    <c:when test="${empty imageSrc}">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="image_tag">
-                                            <img src="<c:url value="resources/img/"/>${imageSrc}" alt="">
-                                        </div>
-                                    </c:otherwise>
-                                </c:choose>
+                            <c:set var="imageSrc" value="${todoch.imageSrc}"/>
+                            <c:choose>
+                                <c:when test="${empty imageSrc}">
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="image_tag">
+                                        <img src="<c:url value="resources/img/"/>${imageSrc}" alt="">
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                             <div class="todo-check-info">
                                 <button type="button" class="btn btn-success todo-success" value=${todoch.id}>Todo 완료</button>
                             </div>

@@ -10,5 +10,5 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="<c:url value="/resources/css/reset.css"/>" rel='stylesheet' />
-    <link href="<c:url value="/resources/scss/main.css" />" rel='stylesheet' />
+    <link href="<c:url value="/resources/static.css/main.css" />" rel='stylesheet' />
 </head>

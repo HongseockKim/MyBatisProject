@@ -30,8 +30,8 @@
 
     <insert id="inserTodo" parameterType="Todo">
 --         여기서 TRIM 은 문자열의 양쪽 공백을 없애줌 내부 공백은 아님
-        Insert into todo(todo,todo_set,imageSrc)
-        values(TRIM(#{todo}),TRIM(#{todo_set}),TRIM(#{imageSrc}))
+        Insert into todo(todo,todo_set,imageSrc,createdDate)
+        values(TRIM(#{todo}),TRIM(#{todo_set}),TRIM(#{imageSrc}),TRIM(now()))
     </insert>
 
     <delete id="deleteItem" parameterType="Todo">

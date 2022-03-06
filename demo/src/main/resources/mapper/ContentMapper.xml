@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ContentMapper">
+    <select id="findAll" resultType="java.util.HashMap">
+        SELECT * from contentvo;
+    </select>
+
+    <insert id="saveContent" parameterType="contentVo">
+        Insert into contentvo set imgSrc = #{imgSrc}, contentTitle= #{contentTitle}, content = #{content}, createdDate = now(), contentCn = 'com.example.demo.model.contentVo';
+    </insert>
+</mapper>

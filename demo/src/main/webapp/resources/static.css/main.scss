@@ -1,0 +1,393 @@
+body{font-family: 'Noto Sans KR', sans-serif;}
+.wrapper{
+& #right-menu{
+  position: fixed;top:0;right:-500px;
+  width:500px;height:100%;background: #f8f8f8;box-shadow: 0 0 10px;
+  transition: all 0.3s;
+
+  & .wrap{
+    padding:20px;position:relative;
+    & #openPopup{
+      position:absolute;padding:10px 20px;font-size:20px;
+      top:10px;left:-100px;
+    }
+  }
+  &.open{
+    right:0;
+    & #openPopup{
+      left:0;
+    }
+  }
+}
+
+  .header{
+    position: fixed;top:0;left: 0;height: 120px;background: rgba(34, 110, 224, 1);width:100%;
+    box-shadow: 0 0 5px #333333;overflow:hidden;z-index: 999;
+  ;
+    & .row{
+      height:100%;line-height:120px;padding:0 20px;
+      #todoModal{
+        padding:5px 20px;font-size:19px;
+      }
+    }
+    & .logo{
+      font-size:34px;color:#fff;line-height:120px;
+    }
+  }
+  .main-inner{
+    background: #f8f8f8;padding-top: 130px ;
+    position:relative;height:100vh;overflow-y: scroll;
+    // Todo 체크
+    & .todo_check{
+      position:fixed;top:160px;right:100px;
+      min-width:400px;height:calc(100% - 150px);overflow:auto;
+      padding:10px;border-radius: 10px;
+      background: rgba(248, 248, 248, 1);
+      & .panel-heading{
+        position:relative;
+        .badge{
+          position:absolute;top:10px;right:10px;
+          min-width: 20px;
+        }
+      }
+      & .todo-title{
+        margin-bottom:20px;
+        text-align:left;
+        overflow:hidden;
+        & .todo-check-label{
+          float: right;min-width: 60px;
+          & #todo-check-badge{
+            vertical-align: 3px;
+          }
+        }
+        & .panel-body{
+          & .expansion-btn{
+            background: #2371d5;color: #fff;
+
+          }
+        }
+      }
+      & .todo-check-info{
+        padding:20px 0;position:relative;min-height:80px;
+        & .todo-success{
+          position:absolute;top:0;right:20px;min-height:30px;
+        }
+      }
+      & .image_tag{
+        width:250px;margin: 20px auto 20px auto;
+        & img{
+          width:100%;
+        }
+      }
+    }
+
+    // todo 리스트
+    & .todo_list{
+      padding:20px;border-radius:10px;box-shadow:0 0 5px rgba(204, 204, 204, 0.92);
+      max-width:calc(100vw - 600px);background:#fff;
+      & th{
+        text-align: center;
+      }
+      & .todo-info-tag{
+        text-align:right;
+        padding:20px 0;
+        & .badge_total_todo{
+          margin-top: 10px;
+        }
+      }
+      & #todo_num{text-align: center;}
+      .detail_button{
+        display:block;width:80%;text-align:left;
+        &:hover{
+          text-decoration-line: underline;
+        }
+      }
+      & .todo_item{
+        position: relative;overflow: hidden;
+        & .delete_todo{
+          position: absolute;top:50%;transform:translateY(-50%);right:-100%;z-index: 10;
+          transition: all 0.3s;padding:10px 15px;
+        }
+        &:hover{
+          & .delete_todo{
+            right:0;
+          }
+        }
+      }
+      & .create_date{
+        text-align: center;
+      }
+      & .page_nation_tag{
+        & .page_nation{
+          display: flex;justify-content:space-around;align-items:center;
+          max-width:250px;margin: 0 auto;
+          & .page_num{
+            flex-basis: 20%;border-radius:20px;background:#4a76ec;
+            margin-right:10px;text-align:center;overflow:hidden;
+            & .paging_num{
+              display: block;color:#fff;width:100%;padding:2px;
+            }
+            &:last-child{margin-right: 0;}
+          }
+        }
+      }
+    }
+    & .multi-content{
+      background:#fafafa;margin-top:50px;
+      & .inner{
+        max-width:1600px;margin:0 auto;
+        & .jumbotron{
+          box-shadow: 0 0 2px #ccc;
+          & .h1{
+            margin-top:30px;
+          }
+        }
+        & .content-list{
+          width:100%;
+          &:after{content:"";display:block;clear:both;}
+          & .row{
+            float:left;min-width:500px;margin-right: 20px;
+            & .caption{
+              position:relative;
+              & .reference-modal{
+                position:absolute;bottom:0;left:500px;width:500px;height:600px;background:#fff;
+                border:solid 1px #ccc;display:none;z-index: 100;
+                & .modal-inner{
+                  & .notice{
+                    border-bottom: solid 1px #ccc;background: #e3e3e3;
+                    & .notice-item{
+                      & span{
+                        float:left;text-align:center;padding:5px 0;font-weight: bold;
+                        font-size: 15px;
+                        &.title{
+                          width:calc(100% - 150px);
+                        }
+                        &.date{
+                          width:150px;border-left:solid 1px #ccc;
+                        }
+                      }
+                      &:after{content:"";display:block;clear:both;}
+                    }
+                  }
+                  & .todoList{
+                    & .todoList-item{
+                      border-bottom: solid 1px #ccc;
+                      & span{
+                        float:left;padding:10px 0;
+                        &.todo{
+                          width:calc(100% - 150px);padding-left: 20px;
+                        }
+                        &.createdDate{
+                          width:150px;text-align: right;padding-right: 10px;border-left:solid 1px #ccc;
+                        }
+                      }
+                      &:after{content: '';display:block;clear:both;}
+                    }
+                  }
+                }
+                &.on{
+                  display:block;
+                }
+              }
+
+              & .reference-btn{
+                position:absolute;top:5px;right:5px;
+                padding:6px 11px;background:dodgerblue;color:#fff;border-radius:5px;box-shadow: 0 0 5px #ccc;
+                &:hover{
+                  background: #0c69c0;
+                }
+              }
+              & .option-btn-con{
+                text-align:right;
+                & .save-reference{
+                  padding:7px 10px;background: #226ee0;color: #fff;border-radius: 6px;box-shadow: 0 0 5px #ccc;display:none
+                  &.on{
+                    display:inline-block;
+                  }
+                  &:hover{
+                    background: #0d5ecc;
+                  }
+                }
+              }
+            }
+            & > div{width:100%;}
+            &:last-child{margin-right: 0;}
+          }
+          & .registration-content{
+            & .img-src{
+              display:block;height:50px;
+              width:100%;border: none;background: #f6f6f6;margin-bottom: 20px;
+            }
+            & h3{
+              margin-bottom:20px;
+              & input[type=text]{
+                border:none;background: #f6f6f6;height:50px;
+              }
+            }
+            & .content{
+              width:100%;min-height:350px;resize:none;border-radius: 5px;border:none;box-shadow: 0 0 2px #ccc;
+            }
+            & .submit-btn-wrap{
+              padding:10px 0;text-align: right;
+              & .content-save-btn{
+                padding:10px 15px;background:dodgerblue;color: #fff;border-radius: 5px;cursor:pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// todo 디테일
+.todo_detail{
+ position:relative;padding-top: 130px;
+  & .todo_detail_header{
+    position:fixed;top:0;left:0;
+    background: #4a76ec;
+    width:100%;height:120px;padding:0 10px;
+    box-shadow: 0 0 10px #4b4b4b;
+    & .close_detail{
+      position:absolute;top:10px;right:20px;
+      font-weight: bold;font-size:32px;color:#fff;
+    }
+    & h1{
+      color:#fff;font-size:34px;
+      & small{color:#fff;}
+    }
+  }
+  & .todo_detail_body{
+    padding:10px 30px 30px 30px;font-size:24px;
+  }
+  & .todo_detail_footer{
+    position: fixed;bottom:0;left:0;width:100%;height:100px;
+    background: #ccc;box-shadow: 0 -6px 15px rgba(75, 75, 75, 0.3);
+  }
+}
+
+// checkTodo expansion page
+#expansion{
+  background:#333333;
+  #expansion-wrap{
+    position:fixed;top:50%;left:50%;width:98%;height:98%;
+    transform:translate(-50%,-50%);box-shadow: 0 0 12px #ccc;
+    border-radius:15px;background: #fcfcfc;
+    // expansion-header
+    & .expansion-header{
+      border-bottom: solid 1px #ccc;
+      & .header_inner{
+        display:flex;justify-content:space-between;align-items:center;
+        padding: 10px 5px;
+        & .expansion-title{
+          flex-basis: 350px;font-size: 36px;text-align:center;
+        }
+        & .expansion-menu{
+          flex-basis: calc(100% - 370px);margin-right: 20px;
+          // expansion-navigation
+          & .expansion-nav{
+            display:flex;justify-content:start;align-items:center;padding:0 10px;
+            border-radius: 6px;background: #fafafa;box-shadow:0 4px 6px #cccc;min-height:80px;
+            & .expansion-item{
+              min-width: 120px;margin-right: 10px;
+              & .expansion-btns{
+                background:#2371d5;color:#fff;padding:10px 30px;border-radius:6px;border:solid 2px #eaeaea;font-size:17px;
+              }
+              &:last-child{margin-right: 0;}
+            }
+          }
+        }
+      }
+    }
+    //expansionMain
+    & .expansion-main{
+      & .main_inner{
+        display:flex;max-width:1600px;padding:20px;min-height:500px;
+        & .content-con{
+          flex-basis: 40%;
+        }
+        & .expansion-todo-content{
+          flex-basis:calc(100% - 45%);margin-right: 5%;font-size:18px;position:relative;
+          border-left: solid 1px rgba(204, 204, 204, 0.7);padding:10px;
+        }
+      }
+    }
+  }
+  // 추가계획 모달
+  #additional-plan{
+    & .modal-dialog{
+      max-width:1200px;min-height:500px;
+      & .modal-content{
+        height:100%;
+        & .modal-header{
+          position:relative;
+          & .modal-title{
+            text-align: right;font-size:32px;padding:10px 0;
+          }
+          & .additional-plan-close{
+            position:absolute;top:10px;right:10px;
+          }
+        }
+        & .modal-body{
+          min-height:300px;
+          & .additional{
+            & .additional-header{
+              font-size: 24px;font-weight: bold;padding-bottom: 10px;border-bottom: solid 1px #ccc;margin-bottom:20px;
+            }
+            & #additional-textarea{
+              width:100%;min-height:350px;
+            }
+            &.select-area{
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// todo 등록 모달
+
+#myModal{
+  & .modal-body{
+    min-height:400px;overflow:hidden;
+    & .todo-label{font-size:24px;}
+    & #todo_text{min-height: 250px;width:470px;display:block;}
+    & .image_src_input{
+      margin-top: 20px;text-align:center;
+      & #image_src{
+        display:inline-block;margin-left: 20px;border:none;border-radius:3px;box-shadow: 0 0 3px inset;
+        min-height:30px;padding-left:10px;
+      }
+    }
+    & .todo_check{
+      padding:20px 0;text-align:center;
+      & label{
+        font-size:18px;
+        & #is_todo{
+          width:20px;height:20px;vertical-align:-3px;
+        }
+      }
+    }
+  }
+
+  & .modal-footer{
+    text-align:center;
+    & .todo-registration{
+      background: rgba(34, 110, 224, 0.6);
+      color:#fff;padding:10px 30px;
+    }
+  }
+  &.todo_text{
+    width:100%;min-height: 250px;
+  }
+  & .modal-header{
+    position:relative;
+    & .close{
+      position:absolute;top:10px;right:20px;
+    }
+  }
+
+}
